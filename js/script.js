@@ -68,23 +68,19 @@ class WeatherWidget{
         let weatherInput = document.querySelector('#weather__input');
         weatherInput.value = "";           
     }
-
-    
+   
     setStorage(){
         localStorage.setItem('cityName', JSON.stringify(this.cityName));
     }
 
-    getStorage(){
-        let localData = localStorage.getItem('cityName');
-        console.log(localData) 
-
-        if (localData.length > 0) this.cityName = JSON.parse(localData)
-        console.log(this.cityName) 
-        this.getData(this.cityName)   
-    }
 }
 
 window.addEventListener('load',()=>{
+
+    let city = localStorage.getItem('cityName')
     let widget = new WeatherWidget()
+    if(city){
+        widget.getData(city)
+    }
     
 })
